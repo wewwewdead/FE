@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iskryb</title>
+    <link rel="stylesheet" href="/styles/myProfile.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <button class="navbutton">☰</button>
+        <div class="logo">
+            <h2><a href="/landingpage">Iskryb</a></h2>
+        </div>
+
+        <div class="logOutIcon">
+            <form class="log-out" action="/logOut" method="post">
+                <input class="logout-button" type="submit" value="Log out">
+            </form>
+        </div>
+        
+        <div class="nav-icons">
+            <form action="/logOut" method="post">
+                <input class="logout-button" type="submit" value="Log out">
+            </form>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="sidebar-desktop">
+            <div class="sidebar-icons">
+                <h4><a href="/myProfile"><%= locals.user.firstname%> <%= locals.user.lastname %></a></h4>
+                <p></p><a href="/landingpage">Home</a></p>
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <div class="sidebar-icons">
+                <div class="logoInSidebar"> 
+                    <h2><a href="/landingpage">Iskryb</a></h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-container">
+           <div class="profile-details">
+            <div class="profile-name-follows">
+
+                <img id="profile-pic" src="<%= user.profile_pictures || `./uploads/default-profile.png` %>" alt="">
+
+                <div class="follow-btn">
+                    <button class="follower-btn follows"><%= followerCount %> Followers</button>
+                    <button class="following-btn follows"><%= followingCount %> Following</button>
+                </div>         
+            </div>
+            <h2><%= locals.user.firstname %> <%= locals.user.lastname %></h2>
+            
+            <br>
+            <div class="selection">
+                <a href="/myProfile" class="profileSelection"><p>Home</p></a>
+                <a href="/myProfile/Bio"class="profileSelection" style="text-decoration: underline;"><p>Bio</p></a>
+            </div>
+            <hr>
+            <br>
+            <h5>Bio</h5>
+            <div class="bio">
+                <p class="bioParagraph"><%= locals.user.bio || "no bio available" %></p>
+            </div>
+        </div>
+
+        <div class="edit-profile">
+            <div><a href="/edit-profile" >Edit Profile</a></div>
+        </div>
+        
+        <div id="follower-dialog" class="follower-dialog hidden">
+            <div class="follower-content">
+                <% if(followerName.length > 0) {%> 
+                    <% followerName.forEach(name => {%>
+                        <a class="names" href="/user/<%= name.id %>">
+                            <%= name.firstname %> <%=name.lastname  %>
+                        </a>
+                        
+                    <% }); %>
+                <% } else {%>
+                    <p>No followers yet</p>
+                    <% } %>
+                
+            </div>
+            
+        </div>
+
+        <div class="following-dialog hidden" id="following-dialog">
+            <div class="following-content">
+                <% if(followingName.length > 0) {%>
+                    <% followingName.forEach(name => { %>
+                        <a class="names" href="/user/<%= name.id %>">
+                            <%= name.firstname %> <%= name.lastname %>
+                        </a>
+                    <% }); %>
+                    <% } else {%>
+                        <p>No followings yet</p>
+                        <% } %>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+<script src="/profile.js"></script>
+</html>
+            

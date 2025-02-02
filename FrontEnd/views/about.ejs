@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iskryb</title>
+    <link rel="stylesheet" href="/styles/layout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <button class="navbutton">☰</button>
+        <div class="logo">
+            <h2><a href="/landingpage">Iskryb</a></h2>
+        </div>
+        <div class="nav-icons">
+            <li><a href="/about">About</a></li>
+            <li><a href="/landingpage">Home</a></li>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <div class="sidebar">
+            <div class="sidebar-icons">
+                <div class="logoInSidebar"> 
+                    <h2><a href="/landingpage">Iskryb</a></h2>
+                </div>
+                <li><a class="sidebar_anchor" href='/about'>About</a></li>
+                <li><a class="sidebar_anchor" href='/landingpage'>Home</a></li>
+            </div>
+        </div>
+         
+        <div class="contentcontainer">
+            <div class="content">
+                <div class="box item">
+                    <h1>About
+                        <span class="iskribbler">Iskrib<span class="pen">𓂃🖊</span></span>
+                        </h1>
+                        <ul>
+                            <li><h3>Who is Iskrib as a brand?</h3>
+                                <span style="font-size: 1.2rem;">ISKRIB</span> is a minimalist, community-driven platform for writers, poets, storytellers, and readers.
+                                It exists to inspire creativity, encourage meaningful expression, and build connections among like-minded individuals.
+                            </li>
+                            <br>
+                            <p>Write, share, and inspire -</p>
+                            <p>let your story inspire people</p>
+                        </ul>
+                </div>
+                <%-include("./partials/footer.ejs")%>
+            </div>
+            <div class="loginpage item">
+                <div class="loginbox">
+                    <div ><h1 class="signup">Sign Up</h1></div>
+                    <div><h4 class="haveaccount">Already have an account?  <a href="/login"><span class="login">Log in</span></a></h4></div>
+
+                    <div class="oauthCard">
+                        <div class="googleSignIn">  
+                            <a class="googleButton" href="auth/google" role="button">
+                                <i class="fab fa-google"></i>
+                                Sign In with Google
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="Or"> 
+                        <p>OR</p>
+                    </div>
+
+                    <div class="form">
+                        <form action="/signup" method="POST">
+                            <input type="text" class="userinput" id="email" name="email" required placeholder="email">
+
+                            <!-- show a error message to the client -->
+                            <% if(locals.errorMessage) {%>
+                                <div class="errorMessage"><p><%= errorMessage %></p></div>
+                                <% } %>
+                            
+                                <% if(locals.message) {%>
+                                    <div class="errorMessage"><% message %></div>
+                                    <% } %>
+                    
+                            <input type="password" class="userinput" id="password" name="password" required placeholder="password">
+                            <div class="showpassword">
+                                <div class="showpass">
+                                    <input type="checkbox" id="myCheckbox">
+                                    <label for="showpassword" id="hidepassword">showpassword</label>  
+                                </div>
+                            </div>
+                            <input type="text" class="userinput" id="firstname" name="firstname" required placeholder="firstname">
+                            <input type="text" class="userinput" id="lastname" name="lastname" required placeholder="lastname">
+
+                            <div class="demographic">
+                                <select class="select" name="gender" required>
+                                    <option value="" data-display="select" aria-placeholder="Gender">Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+
+                            <input class="signupButton" type="submit" value="Sign up">
+                        </form>
+                        <!-- <div class="button">
+                            <button class="signupButton">Sign Up</button>
+                        </div> -->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+<script src="/javascript.js"></script>
+</html>
